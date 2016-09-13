@@ -1,13 +1,13 @@
 require 'ripper'
-require 'awesome_print' # External gem
+require 'pp'
 
 file_content = File.read("./code.rb")
 
 puts "First Step: Tokenize!"
-ap Ripper.tokenize(file_content)
+pp Ripper.tokenize(file_content)
 
 puts "Next Step: Parse the tokens!"
-ap Ripper.lex(file_content)
+pp Ripper.lex(file_content)
 
 puts "Next Step: Generate AST! (Symbolic Expression Tree)"
-ap Ripper.sexp(file_content)
+pp Ripper.sexp(file_content)
