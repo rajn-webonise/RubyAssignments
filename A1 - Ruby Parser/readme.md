@@ -1,6 +1,6 @@
 # Ruby Parser Assignment
 
-#### Step 1: Splitting code into tokens
+### Step 1: Splitting code into tokens
 
 **Function used: `Ripper.tokenize(string)`**
 
@@ -16,7 +16,7 @@ Sample output:
  "\n",
 ]
 ```
-#### Step 2: Lexical Analysis of tokens
+### Step 2: Lexical Analysis of tokens
 
 **Function used: `Ripper.lex(string)`**
 
@@ -32,7 +32,7 @@ Sample output:
  [[1, 4], :on_int, "5"],
  [[1, 5], :on_nl, "\n"],...
 ```
-#### Step 3: Creating Abstract Syntax Tree (AST):
+### Step 3: Creating Abstract Syntax Tree (AST):
 
 **Function used: `Ripper.sexp(string)`**
 
@@ -52,7 +52,7 @@ Sample output:
    [:string_literal, [:string_content, [:@tstring_content, "Raj", [3, 8]]]]], ....
    ```
 
-#### Step 4: Generating bytecode using AST
+### Step 4: Generating bytecode using AST
 
 **Function used: `RubyVM::InstructionSequence.compile(file_content).to_a`**
 
