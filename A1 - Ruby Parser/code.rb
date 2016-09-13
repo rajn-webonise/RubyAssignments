@@ -1,4 +1,5 @@
 a = 5
 b = 10
-result = a+b
+name = "Raj"
+result = "Hello, #{name} the sum of numbers is: ", (a+b)
 puts result

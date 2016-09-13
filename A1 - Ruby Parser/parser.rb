@@ -3,11 +3,14 @@ require 'pp'
 
 file_content = File.read("./code.rb")
 
-puts "First Step: Tokenize!"
+puts "\nFirst Step: Tokenize the program!"
 pp Ripper.tokenize(file_content)
 
-puts "Next Step: Parse the tokens!"
+puts "\nNext Step: Do lexical analysis on the tokens!"
 pp Ripper.lex(file_content)
 
-puts "Next Step: Generate AST! (Symbolic Expression Tree)"
+puts "\nNext Step: Parse to generate AST! (Symbolic Expression Tree)"
 pp Ripper.sexp(file_content)
+
+puts "\nNext Step: Compile the AST into bytecode"
+pp (RubyVM::InstructionSequence.compile(file_content).to_a)
