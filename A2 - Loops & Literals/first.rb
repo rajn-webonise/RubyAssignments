@@ -1,6 +1,6 @@
 # Returns sum of values in list
 def sum(list)
-  list.inject(0){|sum,x| sum += x }
+  list.reduce(&:+).to_i
 end
 
 # Checks if given list is valid (has a divider point where sum of both parts are equal?)
@@ -22,7 +22,7 @@ test_cases = gets.chomp.to_i
 
 test_cases.times do |test_case|
   puts "Test case ##{test_case+1}", "Enter a list of numbers: "
-  list = gets.chomp.split(' ').map{ |x| x.to_i }
+  list = gets.chomp.split(' ').map(&:to_i)
 
   if valid?(list)
     puts "YES"
