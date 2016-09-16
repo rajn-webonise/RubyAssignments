@@ -1,0 +1,9 @@
+{"name":"LG 5","color":"grey","price":300,"quantity":4,"id":0}
+{"name":"Samsung Galaxy Note","color":"galaxy white","price":324,"quantity":11,"id":1}
+{"name":"Apple iPhone 7","color":"space black","price":600,"quantity":2,"id":2}
+{"name":"OnePlus 3","color":"wooden","price":601,"quantity":0,"id":3}
+{"del":true}
+{"name":"Oppo Smartphone","color":"matte","price":250,"quantity":2,"id":5}
+{"del":true}
+{"del":true}
+{"name":"new phone","color":"glossy","price":0,"quantity":1,"id":6}

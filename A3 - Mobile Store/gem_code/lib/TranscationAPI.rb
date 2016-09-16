@@ -1,13 +1,10 @@
-#require  Dir.pwd + '/FileStorageModule.rb'
 require_relative 'FileStorageModule.rb'
-#Dir[ Dir.pwd + "/*.rb"].each {|file| require file }
-
 
 class TranscationAPI
 
   extend FileStorageModule
 
-  @@file_path = Dir.pwd + "/FileStorage/transcations.log"
+  @@file_path = Dir.pwd + "/lib/FileStorage/transcations.log"
 
   def self.seed
     @@list = read_file(@@file_path)
@@ -17,6 +14,7 @@ class TranscationAPI
     @@list ||= Array.new
     transcation[:id] = @@list.size
     @@list.push(transcation)
+    puts "TranscationAPI#record: Recording a transcation with these details: #{transcation}"
     add_line(@@file_path, transcation)
   end
 

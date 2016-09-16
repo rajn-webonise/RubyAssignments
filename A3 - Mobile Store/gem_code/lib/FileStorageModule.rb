@@ -1,4 +1,3 @@
-require 'byebug'
 require 'json'
 
 module FileStorageModule
@@ -22,15 +21,15 @@ module FileStorageModule
   end
 
   def update_line(fp, old_data, new_data)
-    old_line = data.to_json
-    new_line = data.to_json
+    old_line = old_data.to_json
+    new_line = new_data.to_json
     content = File.read(fp)
     content.sub!(old_line, new_line)
     File.open(fp, "w") {|file| file.puts content }
   end
 
   def remove_line(fp, data)
-    edit_line(fp, data, {del: true})
+    update_line(fp, data, {del: true})
   end
 
 end

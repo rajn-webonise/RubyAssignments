@@ -1,3 +1,0 @@
-module UserModule
-  
-end
