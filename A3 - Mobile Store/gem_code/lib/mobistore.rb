@@ -1,7 +1,7 @@
-require  Dir.pwd + '/lib/ProductAPI.rb'
-require  Dir.pwd + '/lib/TranscationAPI.rb'
-require  Dir.pwd + '/lib/BuyerAPI.rb'
-require  Dir.pwd + '/lib/SellerAPI.rb'
+require_relative 'ProductAPI.rb'
+require_relative 'TranscationAPI.rb'
+require_relative 'BuyerAPI.rb'
+require_relative 'SellerAPI.rb'
 
 class MobiStore
 

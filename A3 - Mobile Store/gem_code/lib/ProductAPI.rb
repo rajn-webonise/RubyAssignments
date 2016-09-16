@@ -1,12 +1,13 @@
 require_relative 'FileStorageModule'
-
+require 'byebug'
 class ProductAPI
 
   extend FileStorageModule
 
-  @@file_path = Dir.pwd + "/lib/FileStorage/products.log"
+  @@file_path = File.join(File.dirname(caller[0]), "/FileStorage/products.log")
 
   def self.seed
+    byebug
     @@list = read_file(@@file_path)
   end
 

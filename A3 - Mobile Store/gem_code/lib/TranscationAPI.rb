@@ -4,7 +4,7 @@ class TranscationAPI
 
   extend FileStorageModule
 
-  @@file_path = Dir.pwd + "/lib/FileStorage/transcations.log"
+  @@file_path = File.join(File.dirname(caller[0]), "/FileStorage/transcations.log")
 
   def self.seed
     @@list = read_file(@@file_path)
