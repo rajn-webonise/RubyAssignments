@@ -15,3 +15,38 @@
 /log/*
 !/log/.keep
 /tmp
+
+/.bundle
+
+/config/settings/development.yml
+.idea/
+.ruby-gemset
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+*~
+*.swp
+
+/public/uploads
+
+/config/initializers/secret_token.rb
+
+*.iml
+
+/out
+
+/spec/reports
+
+.credentials
+
+.byebug_history
+
+# Ignore bundler config
+/.bundle
+/vendor/bundle/
+/vendor/ruby/
+
+# Ignore the default database.
+/db/*.sqlite3
+/db/*.javadb/
