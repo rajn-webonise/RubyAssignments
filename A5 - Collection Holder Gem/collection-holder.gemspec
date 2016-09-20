@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'collection-holder'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2016-09-19'
   s.summary     = 'Manages your data structures'
   s.description = 'A simple gem to manage your queues or any data structure!'
