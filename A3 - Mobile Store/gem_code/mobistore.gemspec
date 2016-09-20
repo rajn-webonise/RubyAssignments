@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'mobistore'
-  s.version     = '0.0.2'
-  s.date        = '2016-09-16'
+  s.version     = '0.0.3'
+  s.date        = '2016-09-20'
   s.summary     = "A CLI mobile store with JSON file database"
   s.description = "Mobile store, with built-in JSON database and seeded objects. Type 'MobiStore.init' to get started"
   s.authors     = ["Raj Negi"]

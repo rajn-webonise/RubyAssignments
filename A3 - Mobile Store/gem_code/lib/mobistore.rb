@@ -89,6 +89,3 @@ class MobiStore
   end
 
 end
-
-
-MobiStore.init
