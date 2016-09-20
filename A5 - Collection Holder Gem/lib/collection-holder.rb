@@ -21,7 +21,7 @@ class CollectionHolder
 
   def display
     @holder.each do |key, collection|
-      puts "CollectionID##{key.to_s} | #{collection.type} | #{collection.display}\n"
+      puts "CollectionID##{key.to_s} | #{collection.class.to_s} | #{collection.display}\n"
     end
   end
 

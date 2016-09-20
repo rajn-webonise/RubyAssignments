@@ -65,9 +65,8 @@ It is used to manage (add/create/display/delete) your collections in one place. 
  Simply create a new class file for a data structure and write its implementation. The method `add(collection)` in CollectionManager class will store all types of collections, and assigns them an `id` by default.
 
 * **What should be the structure of the class?**  
- The class can have any methods it deems fitting. However, it should have the following 2 accessors/methods:  
-`display()` : Returning the identity of the object as a string.  
-`type()`: Returns a string. Denoting the data-structure of the object.   
+ The class can have any methods it deems fitting. However, it should have the following method:  
+`display()` : Returning the identity of the object as a string.   
  * **Optional**  
 The initialization parameter can take the following fields in a single hash:     
 (The hash symbols have to be exact)  
