@@ -4,12 +4,15 @@ class BuyerAPI
 
   extend UserModule
 
+  $BUYER_OPTIONS = { list: "list", search: "search", buy: "buy"}
+
   @@name = "Raj Negi"
   @@money = 5000
   @@cc_details = "icic"
 
+
   def self.buy
-    puts "\tEnter the details of product you want to buy: "
+    puts "\n\tEnter the details of product you want to buy ('q' to quit): "
     product_id = get_number("ID")
     product = ProductAPI.search_id(product_id)
 

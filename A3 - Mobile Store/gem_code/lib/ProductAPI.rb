@@ -4,10 +4,10 @@ class ProductAPI
 
   extend FileStorageModule
 
+
   @@file_path = File.join(File.dirname(caller[0]), "/FileStorage/products.log")
 
   def self.seed
-    byebug
     @@list = read_file(@@file_path)
   end
 
