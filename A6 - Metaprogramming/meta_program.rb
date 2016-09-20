@@ -1,18 +1,30 @@
 require 'time'
+require 'byebug'
 
-class Flight
+
+Object.const_set('Flight', Class.new)
+flight_class = Object.const_get('Flight')
+
+flight_class.class_eval do
   attr_reader :arrival, :departure
+
   def initialize(arrival, departure)
     @arrival = arrival
     @departure = departure
   end
 end
 
-class Airport
+
+Object.const_set('Airport', Class.new)
+airport_class = Object.const_get('Airport')
+
+
+airport_class.instance_eval do
+
   @@flights = Array.new
   @@time_line = Array.new(1440 + 1, 0)
 
-  def self.read_timings
+  def read_timings
     puts "Input number of flights: "
     flight_count = gets.chomp.to_i
 
@@ -27,7 +39,7 @@ class Airport
     end
   end
 
-  def self.populate_timeline
+  def populate_timeline
     @@flights.each do |flight|
       (minute_mark(flight.arrival)..minute_mark(flight.departure)).each do |minute|
         @@time_line[minute] += 1
@@ -35,7 +47,7 @@ class Airport
     end
   end
 
-  def self.minimum_platforms
+  def minimum_platforms
     puts "\n\nThe maximum number of overlaps of flights is: #{@@time_line.max}\n\n"
   end
 
@@ -43,6 +55,7 @@ class Airport
     def self.minute_mark(time)
       time.min + (time.hour * 60)
     end
+
 end
 
 Airport.read_timings
