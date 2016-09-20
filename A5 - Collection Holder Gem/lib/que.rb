@@ -4,7 +4,7 @@ class Que
 
   attr_reader :type, :max_size
 
-  def initialize(data={})
+  def initialize(data = {})
     @type = "Que"
     @max_size = data[:size] || $DEFAULT_QUE_SIZE
     @list = Queue.new
@@ -12,7 +12,7 @@ class Que
   end
 
   def pop
-    if @list.size<1
+    if @list.size < 1
       puts "Empty collection! Can't pop()"
     elsif
       @list.pop
@@ -21,7 +21,7 @@ class Que
 
   def push(item)
     begin
-      if @list.size>=@max_size
+      if @list.size >= @max_size
         puts "Full collection! Can't push(#{item.to_s})"
       elsif
         @list.push(item)
@@ -45,7 +45,7 @@ class Que
   end
 
   def empty?
-   length==0
+   length == 0
   end
 
   def push_list(list)

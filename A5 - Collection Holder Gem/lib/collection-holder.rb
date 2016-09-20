@@ -1,4 +1,4 @@
-require_relative "que.rb"
+require_relative 'que.rb'
 
 class CollectionHolder
 
