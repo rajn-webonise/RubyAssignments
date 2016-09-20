@@ -1,20 +1,13 @@
-require 'byebug'
-
 $DEFAULT_QUE_SIZE = 10
 
 class Que
 
-  @@QueueID = 0
-
-  attr_reader :id, :type, :max_size
+  attr_reader :type, :max_size
 
   def initialize(data={})
     @type = "Que"
-    @id = @@QueueID
+    @max_size = data[:size] || $DEFAULT_QUE_SIZE
     @list = Queue.new
-    @@QueueID += 1
-    @max_size = $DEFAULT_QUE_SIZE
-    @max_size = data[:size] if data[:size]
     push_list(data[:list]) if data[:list]
   end
 
@@ -26,15 +19,16 @@ class Que
     end
   end
 
-  def push(x)
+  def push(item)
     begin
-      if @list.size>=max_size
-        puts "Full collection! Can't push(#{x.to_s})"
+      if @list.size>=@max_size
+        puts "Full collection! Can't push(#{item.to_s})"
       elsif
-        @list.push(x)
+        @list.push(item)
       end
+
     rescue
-      puts "Unable to push #{x.to_s}"
+      puts "Unable to push #{item.to_s}"
     end
   end
 
