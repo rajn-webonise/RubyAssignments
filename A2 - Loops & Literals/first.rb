@@ -7,10 +7,10 @@ end
 def valid?(list)
   # Divider divides the list into left and right.
   # Divider's value ranges from 0..length+1 to ensure all possible combinations are tried.
-  (list.length + 1).times do |divider|
+  (list.length).times do |divider|
     # Filter left and right lists, by comparing value of divider with index. Then, compare their sums.
     left_list = list.select.with_index{|val,index| index<divider }
-    right_list = list.reject.with_index{|val,index| index<divider }
+    right_list = list.select.with_index{|val,index| index>divider }
     return true if sum(left_list)==sum(right_list)
   end
   return false
