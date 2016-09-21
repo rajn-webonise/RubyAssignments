@@ -1,6 +1,4 @@
 require 'time'
-require 'byebug'
-
 
 Object.const_set('Flight', Class.new)
 flight_class = Object.const_get('Flight')
@@ -25,18 +23,20 @@ airport_class.instance_eval do
   @@time_line = Array.new(1440 + 1, 0)
 
   def read_timings
+
     puts "Input number of flights: "
     flight_count = gets.chomp.to_i
 
-    flight_count.times do |flight_count|
+    b = Proc.new do |flight_count|
       puts "\nFor flight##{flight_count}: "
       print "\tArrival: "
       arrival = Time.parse(gets.chomp)
       print "\tDeparture: "
       departure = Time.parse(gets.chomp)
-
       @@flights[flight_count] = Flight.new(arrival, departure)
     end
+    flight_count.public_send(:times, &b)
+
   end
 
   def populate_timeline
@@ -47,10 +47,6 @@ airport_class.instance_eval do
     end
   end
 
-  def minimum_platforms
-    puts "\n\nThe maximum number of overlaps of flights is: #{@@time_line.max}\n\n"
-  end
-
   private
     def self.minute_mark(time)
       time.min + (time.hour * 60)
@@ -58,6 +54,14 @@ airport_class.instance_eval do
 
 end
 
-Airport.read_timings
-Airport.populate_timeline
-Airport.minimum_platforms
+
+Airport.define_singleton_method("minimum_platforms") do
+  puts "\n\nThe maximum number of overlaps of flights is: #{@@time_line.max}\n\n"
+end
+
+Airport.define_singleton_method("minute_mark") { |time| time.min + (time.hour * 60) }
+
+
+Airport.send(:read_timings)
+Airport.send(:populate_timeline)
+Airport.send(:minimum_platforms)
