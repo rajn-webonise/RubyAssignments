@@ -1,10 +1,8 @@
 require_relative 'que.rb'
 require_relative 'error.rb'
-require 'byebug'
+require_relative 'config.rb'
 
-$HOLDER_SIZE = 10
-
-class CollectionHolder #< Errors
+class CollectionHolder
 
   attr_reader :holder
 
@@ -13,10 +11,10 @@ class CollectionHolder #< Errors
   def initialize(data = {})
     raise Error if !valid_number(data[:size]) && data[:size]
 
-    @size = data[:size] || $HOLDER_SIZE
-    @holder = Hash.new(@size)
-    rescue => e
-      e.init_failed
+    @size = data[:size].to_i || $DEFAULT_HOLDER_SIZE
+    @holder = Hash.new
+  rescue => e
+      e.init_failed(self.class)
   end
 
   def add(collection)
@@ -25,7 +23,7 @@ class CollectionHolder #< Errors
   @holder[key(@@collectionID)] = collection
   @@collectionID += 1
   rescue => e
-    e.max_size_reached
+    e.max_size_reached(self.class)
   end
 
   def find(id)
@@ -43,7 +41,7 @@ class CollectionHolder #< Errors
 
     @holder.delete(key(id))
     rescue => e
-      e.min_size_reached
+      e.min_size_reached(self.class)
   end
 
   private
@@ -57,12 +55,3 @@ class CollectionHolder #< Errors
     end
 
 end
-
-
-#ch = CollectionHolder.new({size: '3a45'})
-
-ch = CollectionHolder.new({size: '435'})
-q = Que.new
-q.pop
-ch.add(3)
-ch.add(3)

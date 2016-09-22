@@ -25,8 +25,8 @@ It is used to manage (add/create/display/delete) your collections in one place. 
 
 ### CollectionHolder Class:
 
-*  **`CollectionHolder.new()`**  
-    Creates a *Collection Holder* instance object. Takes no parameters.
+*  **`CollectionHolder.new(data=nil)`**  
+    Creates a *Collection Holder* instance object. Takes optional hash parameter with `{:size => numeric_value}`. Defaults to size 10.
 *  **`add(collection)`**  
     Adds the passed `collection` object to its `list`
 * **`get(id)`**  
@@ -42,7 +42,7 @@ It is used to manage (add/create/display/delete) your collections in one place. 
 ### Que Class:
 
 *  **`Que.new(data=nil)`**  
-    Creates a Collection instance object. Takes a hash parameter with 2 valid fields: `size` (defines max_size of Que) `list` (populates the que with this list). `data` defaults to nil.
+    Creates a Collection instance object. Takes a hash parameter with 2 valid fields: `size` (defines max_size of Que) `list` (populates the que with this list). Size defaults to 10, otherwise.
 *  **`pop()`**  
     Pops out the last object pushed in the `que`.
 * **`push(item)`**  
@@ -67,7 +67,14 @@ It is used to manage (add/create/display/delete) your collections in one place. 
 * **What should be the structure of the class?**  
  The class can have any methods it deems fitting. However, it should have the following method:  
 `display()` : Returning the identity of the object as a string.   
- * **Optional**  
+
+* **Configuration details**  
+  Use `config.rb` for configuration. This includes constant values for defaults.
+
+* **Error Handling**  
+  Use `error.rb` for printing error messages. Include error handling messages for negative flows of the code. (For example, popping from an empty list).
+
+ * **Optional fields in initialization**  
 The initialization parameter can take the following fields in a single hash:     
 (The hash symbols have to be exact)  
 `max_size:`: Maximum allowed entries in the structure.  

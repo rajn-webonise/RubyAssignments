@@ -1,4 +1,5 @@
-$DEFAULT_QUE_SIZE = 10
+require_relative 'error.rb'
+require_relative 'config.rb'
 
 class Que
 
@@ -7,11 +8,11 @@ class Que
   def initialize(data = {})
     raise Error if !valid_number(data[:size]) && data[:size]
 
-    @max_size = data[:size] || $DEFAULT_QUE_SIZE
+    @max_size = get_number(data[:size]) || $DEFAULT_QUE_SIZE
     @list = Queue.new
     push_list(data[:list]) if data[:list]
     rescue => e
-      e.init_failed
+      e.init_failed(self.class)
   end
 
   def pop
@@ -19,15 +20,14 @@ class Que
 
     @list.pop
     rescue => e
-      e.min_size_reached
+      e.min_size_reached(self.class)
   end
 
   def push(item)
     raise Error if @list.size >= @max_size
-
-    puts "Full collection! Can't push(#{item.to_s})"
+    @list.push item
     rescue => e
-      e.max_size_reached
+      e.max_size_reached(self.class)
   end
 
   def clear
@@ -51,7 +51,7 @@ class Que
 
     list.each { |data| @list.push data } if list.is_a? Array
     rescue => e
-      e.max_size_reached
+      e.max_size_reached(self.class)
   end
 
   def display
@@ -62,6 +62,11 @@ class Que
     def valid_number(str)
       str = str.to_s
       !!(str =~ /[0-9]+/ && str.length == str.match(/[0-9]+/).to_s.length)
+    end
+
+    def get_number(str)
+      return nil if str==nil
+      return str.to_i
     end
 
 end
