@@ -6,31 +6,23 @@ class Que
   attr_reader :max_size
 
   def initialize(data = {})
-    raise Error if !valid_number(data[:size]) && data[:size]
-
+    raise Error.init_failed(self.class) if !valid_number(data[:size]) && data[:size]
     @max_size = get_number(data[:size]) || $DEFAULT_QUE_SIZE
     @list = Queue.new
     push_list(data[:list]) if data[:list]
-    rescue => e
-      e.init_failed(self.class)
   end
 
-  def pop
-    raise Error if @list.empty?
-
+  def pop!
+    raise Error.min_size_reached(self.class) if @list.empty?
     @list.pop
-    rescue => e
-      e.min_size_reached(self.class)
   end
 
   def push(item)
-    raise Error if @list.size >= @max_size
+    raise Error.max_size_reached(self.class) if @list.size >= @max_size
     @list.push item
-    rescue => e
-      e.max_size_reached(self.class)
   end
 
-  def clear
+  def clear!
     @list.clear
   end
 
@@ -47,11 +39,8 @@ class Que
   end
 
   def push_list(list)
-    raise Error if (@list.size+list.size) >= @max_size
-
+    raise Error.max_size_reached(self.class) if (@list.size + list.size) >= @max_size
     list.each { |data| @list.push data } if list.is_a? Array
-    rescue => e
-      e.max_size_reached(self.class)
   end
 
   def display
@@ -65,7 +54,7 @@ class Que
     end
 
     def get_number(str)
-      return nil if str==nil
+      return nil if str.nil?
       return str.to_i
     end
 

@@ -9,21 +9,15 @@ class CollectionHolder
   @@collectionID = 0
 
   def initialize(data = {})
-    raise Error if !valid_number(data[:size]) && data[:size]
-
+    raise Error.init_failed(self.class) if !valid_number(data[:size]) && data[:size]
     @size = data[:size].to_i || $DEFAULT_HOLDER_SIZE
     @holder = Hash.new
-  rescue => e
-      e.init_failed(self.class)
   end
 
-  def add(collection)
-  raise Error if @holder.size >= @size
-
-  @holder[key(@@collectionID)] = collection
+  def add(collection_type, data = {})
+  raise Error.max_size_reached(self.class) if @holder.size >= @size
+  @holder[key(@@collectionID)] = Object::const_get(collection_type).new(data)
   @@collectionID += 1
-  rescue => e
-    e.max_size_reached(self.class)
   end
 
   def find(id)
@@ -36,12 +30,9 @@ class CollectionHolder
     end
   end
 
-  def delete(id)
-    raise Error if @holder.empty?
-
+  def delete!(id)
+    raise Error.min_size_reached(self.class) if @holder.empty?
     @holder.delete(key(id))
-    rescue => e
-      e.min_size_reached(self.class)
   end
 
   private
@@ -53,5 +44,15 @@ class CollectionHolder
       str = str.to_s
       !!(str =~ /[0-9]+/ && str.length == str.match(/[0-9]+/).to_s.length)
     end
+
+end
+
+begin
+  ch = CollectionHolder.new(size: '32')
+  ch.add("Que")
+  ch.add("Que")
+  ch.delete!(0)
+  ch.display
+#rescue #?
 
 end
