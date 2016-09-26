@@ -2,14 +2,8 @@ require "roman"
 
 
 describe Roman do
-  describe "#hi" do
-    it "gives back hi" do
-    expect(Roman.hi).to eq("HI")
-    end
 
-  end
-
-  describe "#parse valid roman values" do
+  describe "#parse valid roman values: " do
     it "checks when input is adding up decimals upto 3 times" do
       expect(Roman.parse("C C V I I I")).to eq(208)
     end
@@ -18,8 +12,12 @@ describe Roman do
       expect(Roman.parse("X C I I")).to eq(92)
     end
 
+    it "checks if input multiplies when passed multiplicative numeral" do
+      expect(Roman.parse("I V GOLD")).to eq(57800)
+    end
+
   end
-  
+
   describe "#parse invalid roman values: " do
     it "checks when input is adding up decimals more than three times" do
       expect(Roman.parse("C C V I I I I")).to eq("Numeral 'I' has repeated more than thrice!")
@@ -39,8 +37,7 @@ describe Roman do
 
   end
 
-  describe "Sanity checks" do
-
+  describe "Sanity checks: " do
     it "X C I I should be 92" do
       expect(Roman.parse("X C I I")).to eq(92)
     end
@@ -64,8 +61,6 @@ describe Roman do
     it "X C C should be invalid" do
       expect(Roman.parse("X C C")).to eq("Current numeral 'C' can't be greater than the previous one")
     end
-
   end
-
 
 end

@@ -7,6 +7,9 @@ $VALUE[:L] = 50
 $VALUE[:C] = 100
 $VALUE[:D] = 500
 $VALUE[:M] = 1000
+$VALUE[:SILVER] = 17
+$VALUE[:GOLD] = 14450
+$VALUE[:IRON] = 195.5
 #
 # $VALUE = Hash.new
 # $VALUE[:I] = {value: 1, label: "coin"}

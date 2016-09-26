@@ -3,10 +3,6 @@ require 'byebug'
 
 module Roman
 
-  def self.hi
-    "HI"
-  end
-
   def self.parse(roman)
     token = roman.upcase.split(" ").map(&:to_sym)
 
@@ -15,11 +11,16 @@ module Roman
     previous = {}
     while index < token.size
 
+      if(multiplicative(token[index]))
+        number *= $VALUE[token[index]]
+        break
+      end
+
       if(previous[:number] && $VALUE[token[index]] > previous[:number])
         return "Current numeral '#{token[index]}' can't be greater than the previous one"
       end
 
-      if index<token.size-1 && $VALUE[token[index]] < $VALUE[token[index+1]]
+      if index < token.size-1 && $VALUE[token[index]] < $VALUE[token[index+1]] && !multiplicative(token[index]) && !multiplicative(token[index+1])
           if !decimal($VALUE[token[index]])
             return "Can't subtract non-decimal numeral '#{token[index]}'"
           end
@@ -52,4 +53,13 @@ module Roman
       !!(number == 1 || number == 10 || number == 100 || number == 1000)
     end
 
+    def self.multiplicative(token)
+      !!(token == :GOLD || token == :IRON || token == :SILVER)
+    end
+
 end
+#
+# puts Roman.parse("I I SILVER")
+# puts Roman.parse("I V GOLD")
+# puts Roman.parse("X X IRON")
+# puts Roman.parse("X L I I")
