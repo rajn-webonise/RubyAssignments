@@ -1,0 +1,5 @@
+host: 'localhost'
+adapter: 'sqlite3'
+encoding: utf-8
+database: 'db/mobi_db.sqlite3'
+pool: 3
