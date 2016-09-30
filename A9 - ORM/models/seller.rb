@@ -1,15 +1,11 @@
-require 'byebug'
-require 'active_record'
-require 'yaml'
+require "../config/config"
 
-db_config = YAML::load(File.open('../config/database.yml'))
-
-ActiveRecord::Base.establish_connection(db_config)
+require_relative "product"
 
 class Seller < ActiveRecord::Base
   has_many :products
 end
 
-byebug
+# byebug
 
 puts 4

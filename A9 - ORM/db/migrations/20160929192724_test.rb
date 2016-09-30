@@ -6,7 +6,7 @@
 class Test < ActiveRecord::Migration
   def self.up
     ActiveRecord::Schema.define do
-      create_table :seller do |t|
+      create_table :sellers do |t|
         t.string :name, null: false
         t.integer :address, null: true
       end

@@ -1,14 +1,16 @@
-require 'byebug'
-require 'active_record'
-require 'yaml'
+require "../config/config"
 
-db_config = YAML::load(File.open('../config/database.yml'))
-
-ActiveRecord::Base.establish_connection(db_config)
+require_relative "category.rb"
+require_relative "seller.rb"
 
 class Product < ActiveRecord::Base
+  belongs_to :category
+  belongs_to :seller
+
+  validates :name, presence: true, length: { minimum: 4 }
+  validates :price, numericality: true
 end
 
-byebug
+# byebug
 
 puts 4

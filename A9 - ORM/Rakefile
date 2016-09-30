@@ -6,7 +6,7 @@ namespace :db do
 
  db_config = YAML::load(File.open('config/database.yml'))
  ActiveRecord::Base.establish_connection(db_config)
- 
+
   desc 'Create the database'
   task :create do
     File.delete(db_config["database"]) if File.exists? db_config["database"]
@@ -35,8 +35,8 @@ namespace :db do
     File.open(filename, "w:utf-8") do |file|
       ActiveRecord::SchemaDumper.dump(ActiveRecord::Base.connection, file)
     end
+    puts "Schema generated/updated."
   end
-
 
   desc "Generate a migration file"
   task :migration do
@@ -55,7 +55,7 @@ class #{migration_class} < ActiveRecord::Migration
 end
       EOF
     end
+    puts "Database migrated."
   end
-
 
 end
