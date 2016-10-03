@@ -1,7 +1,7 @@
-require "../config/config"
+#require "../config/config"
 
-require_relative "category.rb"
-require_relative "seller.rb"
+require File.dirname(__FILE__) + "/category.rb"
+require File.dirname(__FILE__) + "/seller.rb"
 
 class Product < ActiveRecord::Base
   belongs_to :category
@@ -10,7 +10,3 @@ class Product < ActiveRecord::Base
   validates :name, presence: true, length: { minimum: 4 }
   validates :price, numericality: true
 end
-
-# byebug
-
-puts 4

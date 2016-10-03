@@ -14,6 +14,18 @@ class App
     [resp[:code], resp[:header], resp[:data]]
   end
 end
-byebug
+#byebug
 #run App.new
-Rack::Handler::WEBrick.run App.new
+Rack::Handler::WEBrick.run App.new, {:Host => "0.0.0.0"}
+
+# app = App.new
+# options={}
+# environment  = ENV['RACK_ENV'] || 'development'
+#   default_host = environment == 'development' ? '0.0.0.0' : nil
+
+#   options[:BindAddress] = options.delete(:Host) || default_host
+#   options[:Port] ||= 8080
+#   @server = ::WEBrick::HTTPServer.new(options)
+#   @server.mount "/", Rack::Handler::WEBrick, app
+#   yield @server  if block_given?
+#   @server.start
