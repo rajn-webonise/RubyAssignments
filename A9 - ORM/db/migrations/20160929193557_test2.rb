@@ -6,6 +6,7 @@ class Test2 < ActiveRecord::Migration
         t.belongs_to :seller, index: true
         t.string :name, null: false
         t.integer :price, null: false
+        t.integer :quantity, null: false
       end
     end
   end

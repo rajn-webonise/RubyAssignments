@@ -1,0 +1,39 @@
+
+POST:
+curl --data "name=Clothes" http://localhost:8080/categories
+
+DELETE:
+curl -X "DELETE" http://localhost:8080/categories/2
+
+UPATE/PATCH
+curl --request PATCH --data 'name=Electronics' http://localhost:8080/categories/1
+
+# curl --request PATCH --data 'quantity=100' http://localhost:8080/products/5
+
+ADD CATEGORIES (POST)
+curl --data "name=Electronics" http://localhost:8080/categories/
+curl --data "name=Clothing" http://localhost:8080/categories/
+curl --data "name=Books" http://localhost:8080/categories/
+
+ADD SELLERS (POST)
+curl --data "name=Raj" http://localhost:8080/sellers/
+curl --data "name=Shirish" http://localhost:8080/sellers/
+
+ADD PRODUCTS (POST)
+curl --data "name=iPhone7&price=282&quantity=10&category_id=1" http://localhost:8080/sellers/1/products
+curl --data "name=MOTOG&price=122&quantity=40&category_id=1" http://localhost:8080/sellers/1/products
+curl --data "name=DanBrown&price=122&quantity=5&category_id=3" http://localhost:8080/sellers/1/products
+curl --data "name=CalvinKlien&price=552&quantity=3&category_id=1" http://localhost:8080/sellers/1/products
+curl --data "name=Myntras&price=552&quantity=33&category_id=1" http://localhost:8080/sellers/2/products
+curl --data "name=TommyHillfigure&price=552&quantity=3&category_id=1" http://localhost:8080/sellers/2/products
+
+
+
+ADD BUYER (POST)
+curl --data "name=Sodhi" http://localhost:8080/buyers/
+
+ADD TO CART (POST)
+curl --data "product_id=1&quantity=2" http://localhost:8080/buyers/1/orders
+
+CHECKOUT (POST)
+curl --request POST http://localhost:8080/buyers/1/paid

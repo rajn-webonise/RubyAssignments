@@ -8,9 +8,6 @@ class AddTime < ActiveRecord::Migration
       t.timestamps
     end
 
-    change_table(:products) do |t|
-      t.references :sellers
-    end
   end
   def self.down
   end
